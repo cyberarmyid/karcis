@@ -1,0 +1,13 @@
+{
+    "name": "cyberarmy/karcis",
+    "authors": [
+        {
+            "name": "Cyberarmy",
+            "email": "hello@cyberarmy.id"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^3.6",
+        "ext-mysqli": "*"
+    }
+}
