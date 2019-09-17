@@ -11,11 +11,12 @@
     $id_ticket = $_POST['id_ticket'][$identity];
     $seats = $_POST['seats'][$identity];
 
+
     // jika kursi 0
-    if($seats == 0){
+    if($seats < 1){
         header('Location: '.$host.'tickets.php?status=seatsFailed' );
     }
-
+    
     // insert table booking
     $sql = "INSERT INTO booking (id_user, id_ticket, status) VALUES ('$id_user', '$id_ticket', 0)";
 
