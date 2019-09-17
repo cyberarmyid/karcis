@@ -1,5 +1,7 @@
 <?php
-$conn = mysqli_connect("localhost", "guest", "", "db_karcis");
+include "db.php";
+
+$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name);
 
 // Check connection
 if (mysqli_connect_errno()) {
