@@ -3,14 +3,14 @@ include "../conn.php";
 
 @session_start();
 
-$id = $_SESSION['id'];
+$id = @$_SESSION['id'];
 
 if(!$id){
     header('location:'.$host.'signin.php');
 }
 
-$fullname = $_POST['fullname'];
-$phone = $_POST['phone'];
+$fullname = @$_POST['fullname'];
+$phone = @$_POST['phone'];
 
 $extensionList = array("jpeg", "jpg", "gif", "png");
  
@@ -31,7 +31,7 @@ if ($fileName && in_array($ekstensi, $extensionList)) {
     $tmpName  = $_FILES['userfile']['tmp_name'];
 
     // proses upload file dari temporary ke path file
-    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $pathFile)) 
+    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $pathFile))
     {       
 	    	// get data user
 			$user = "UPDATE user_profile SET fullname = '$fullname', phone = '$phone', identity_card = '$fileName' WHERE id_user = $id";

@@ -3,13 +3,13 @@
 
     @session_start();
 
-    $id_user = $_SESSION['id'];
+    $id_user = @$_SESSION['id'];
 
-    $submit = $_POST['submit'];
+    $submit = @$_POST['submit'];
     $identity = (int)$submit[0];
 
-    $id_ticket = $_POST['id_ticket'][$identity];
-    $seats = $_POST['seats'][$identity];
+    $id_ticket = @$_POST['id_ticket'][$identity];
+    $seats = @$_POST['seats'][$identity];
 
 
     // jika kursi 0

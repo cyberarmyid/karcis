@@ -46,7 +46,7 @@
                     <span class="navbar-text actions"> 
                         <?php
                         @session_start();
-                        $id = $_SESSION['id'];
+                        $id = @$_SESSION['id'];
                         if($id) {?>
                             <a class="login" href="profile.php">Profile</a>
                             <a class="login" href="myTickets.php">My Tickets</a>    

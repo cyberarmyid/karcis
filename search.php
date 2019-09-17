@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-$id_booking = $_GET['IDBOOKING'];
+$id_booking = @$_GET['IDBOOKING'];
 
 
     
@@ -16,7 +16,7 @@ $result = $conn->query($ticket);
         <div class="row">
             <div class="col-md-12 alert-col relative">
             <?php
-                if($_GET['status'] == 'success'){
+                if(@$_GET['status'] == 'success'){
             ?>
                 <b style="display: block;position: relative;text-align:center; color: rgb(244,71,107)">Profile Updated</b>
             <?php } ?>

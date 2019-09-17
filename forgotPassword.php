@@ -6,10 +6,10 @@ include "header.php";
         <form method="post" action="<?php echo $host;?>function/actForgotPassword.php">
              <!-- if signup failed -->
              <?php
-                if($_GET['status'] == 'failed'){
+                if(@$_GET['status'] == 'failed'){
             ?>
                 <b style="display: block;position: relative;text-align:center; color: rgb(244,71,107)">Failed</b>
-            <?php } else if($_GET['status'] == 'success'){ ?>
+            <?php } else if(@$_GET['status'] == 'success'){ ?>
                 <b style="display: block;position: relative;text-align:center; color: rgb(244,71,107)">Check Your Email</b>
             <?php } ?>
             <!--  -->

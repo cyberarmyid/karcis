@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-$hash = $_GET['hash'];
+$hash = @$_GET['hash'];
 
 $reset_password = "SELECT link FROM forgot_password WHERE hash = '$hash'";
 
