@@ -16,8 +16,8 @@ $extensionList = array("jpeg", "jpg", "gif", "png");
  
 // identitas
 $fileName = $_FILES['userfile']['name'];
-$pecah = explode(".", $fileName);
-$ekstensi = $pecah[1];
+
+$ekstensi = end(explode(".", $fileName));
 
  // nama direktori upload
 $namaDir = '../identitas/';
