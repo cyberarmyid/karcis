@@ -20,7 +20,7 @@ $fileName = $_FILES['userfile']['name'];
 $ekstensi = end(explode(".", $fileName));
 
  // nama direktori upload
-$namaDir = '../identitas/';
+$namaDir = '../files/';
 
 // membuat path nama direktori + nama file.
 $pathFile = $namaDir . $fileName;

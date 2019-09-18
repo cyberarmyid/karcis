@@ -15,8 +15,10 @@
     // jika kursi 0
     if($seats < 1){
         header('Location: '.$host.'tickets.php?status=seatsFailed' );
+        exit;
     }
     
+
     // insert table booking
     $sql = "INSERT INTO booking (id_user, id_ticket, status) VALUES ('$id_user', '$id_ticket', 0)";
 
