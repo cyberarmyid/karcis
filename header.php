@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/Animation-Cards-1.css">
     <link rel="stylesheet" href="assets/css/Animation-Cards.css">
+    <link rel="stylesheet" href="assets/css/booking.css">
     <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
@@ -52,10 +53,10 @@
                     <span class="navbar-text actions"> 
                         <?php
                         if($id) {?>
+                            <a class="login" href="tickets.php">Tickets</a>
+                            <a class="login" href="myBookings.php">My Bookings</a>
                             <a class="login" href="profile.php">Profile</a>
-                            <a class="login" href="myTickets.php">My Tickets</a>    
-                            <a class="login" href="tickets.php">Tickets</a>    
-                            <a class="login" href="<?php echo $host;?>function/logout.php">Logout</a>    
+                            <a class="login" href="<?php echo $host;?>function/logout.php">Logout</a>
                             <?php } else { ?>
                             <a class="login" href="signin.php">Log In</a>
                             <a class="btn btn-light action-button" role="button" href="signup.php">Sign Up</a>
