@@ -25,19 +25,22 @@ include "function/getTickets.php";
                     <div class="card cards-shadown cards-hover">
                         <div class="card-header">
                             <div class="cardheader-text">
-                                <h4 id="heading-card"><?php echo $row['from']." ".$row['to'];?></h4>
+                                <h4 id="heading-card" style="color: #ffffff; text-shadow: -1px -1px rgba(0,0,0,0.5);"><?php echo $row['from']." ".$row['to'];?></h4>
                                 <p class="sub-text-color">Sisa tempat duduk: <?php echo $row['seats'];?></p>
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-text cardbody-sub-text" style="font-size: 30px;color: #595959;">Rp<?php echo number_format($row['price'],2,',','.'); ?>
-                            <span style="font-size:24px; color:#595959">+ Ppn 10%</span> 
-                        </p>
+                            <p class="card-text cardbody-sub-text m-0 p-0" style="font-size: 30px;color: #595959;">Rp<?php echo number_format($row['price'],2,',','.'); ?></p>
+                            <p class="m-0 p-0" style="font-size:24px; color:#595959">+ PPn 10%</p>
                         </div>
                         <input type="hidden" value="<?php echo $row['seats'];?>" name="seats[<?php echo $no;?>]">
                         <input type="hidden" value="<?php echo $row['id'];?>" name="id_ticket[<?php echo $no;?>]">
                         <input type="hidden" value="<?php echo $row['price'];?>" name="price[<?php echo $no;?>]">
-                        <button class="btn btn-primary btn-block" type="submit" name="submit" value="<?php echo $no;?>" style="margin: 0 auto;border: none;width: 50%;top: -20px;">Booking</button>
+                        <div class="text-center" style="width: 100%;">
+                            <button class="btn btn-karcis-primary p-0 mt-4 mb-4"
+                                    style="height: 50px; width: 80%;"
+                                    type="submit" name="submit" value="<?php echo $no;?>">BOOK NOW!</button>
+                        </div>
                     </div>
                 </form>
             </div>
