@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 19, 2019 at 01:20 PM
+-- Generation Time: Sep 19, 2019 at 02:35 PM
 -- Server version: 5.7.27
 -- PHP Version: 7.3.9-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_karcis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `created_at`) VALUES
+(1, 'admin@karcis.id', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2019-09-19 07:32:06');
 
 -- --------------------------------------------------------
 
@@ -71,7 +91,7 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`id`, `from`, `to`, `price`, `seats`, `created_at`) VALUES
 (1, 'Bandung', 'Jakarta', 250000, 2, '2019-09-19 06:15:43'),
-(2, 'Bandung', 'Semarang', 400000, -2, '2019-09-18 07:06:53'),
+(2, 'Bandung', 'Semarang', 400000, 5, '2019-09-19 06:21:54'),
 (3, 'Bandung', 'Yogyakarta', 650000, 3, '2019-09-19 06:18:01');
 
 -- --------------------------------------------------------
@@ -104,6 +124,12 @@ CREATE TABLE `user_profile` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `booking`
@@ -139,6 +165,11 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `booking`
 --

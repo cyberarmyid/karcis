@@ -9,6 +9,7 @@
 
 <?php
 if($_SESSION['tipe'] == 'admin'){
+    unset($_SESSION["id"]);
     header('Location: '.$host.'adminxyz.php');
     exit;
 }

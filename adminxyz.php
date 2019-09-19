@@ -3,7 +3,7 @@ include "header.php";
 ?>
 
 <div class="login-clean">
-        <form>
+<form method="post" action="<?php echo $host;?>function/actSigninAdmin.php">
              <!-- if signup failed -->
              <?php
                 if(@$_GET['status'] == 'failed'){
@@ -14,7 +14,7 @@ include "header.php";
             <?php } ?>
             <!--  -->
 
-            <h2 class>Halaman Admin</h2>
+            <h2 class>Login Admin</h2>
             <div class="illustration"><i class="fa fa-ticket"></i></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
