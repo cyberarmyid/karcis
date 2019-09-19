@@ -31,7 +31,7 @@ include "function/getMyTickets.php";
                     <p class="booking-font-field"><?php echo $row['from'];?> - <?php echo $row['to'];?></p>
                 </div>
                 <div class="col-md-3 p-0 m-0 text-right">
-                    <a href="<?php echo $host;?>myDetailTicket.php?IDBOOKING=<?php echo $row['id_booking'];?>&IDTICKET=<?php echo $row['id'];?>">
+                    <a href="<?php echo $host;?>myBookingDetail.php?IDBOOKING=<?php echo $row['id_booking'];?>&IDTICKET=<?php echo $row['id'];?>">
                         <button class="btn btn-booking-primary p-0 m-0" type="submit">Detail</button>
                     </a>
                 </div>

@@ -17,6 +17,7 @@ $user = "SELECT tickets.*, booking.id as id_booking FROM booking LEFT JOIN ticke
 
 $result = $conn->query($user);
 
+var_dump($result->fetch_assoc());
 
 ?>
 
