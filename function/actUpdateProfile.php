@@ -13,7 +13,7 @@ $fullname = @$_POST['fullname'];
 $email = @$_POST['email'];
 $phone = @$_POST['phone'];
 
-// identitas
+// mitra
 $fileName = $_FILES['userfile']['name'];
 
  // nama direktori upload
