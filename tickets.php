@@ -26,14 +26,17 @@ include "function/getTickets.php";
                         <div class="card-header">
                             <div class="cardheader-text">
                                 <h4 id="heading-card"><?php echo $row['from']." ".$row['to'];?></h4>
-                                <p class="sub-text-color">seats: <?php echo $row['seats'];?></p>
+                                <p class="sub-text-color">Sisa tempat duduk: <?php echo $row['seats'];?></p>
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-text cardbody-sub-text">Rp<?php echo number_format($row['price'],2,',','.'); ?></p>
+                            <p class="card-text cardbody-sub-text" style="font-size: 30px;color: #595959;">Rp<?php echo number_format($row['price'],2,',','.'); ?>
+                            <span style="font-size:24px; color:#595959">+ Ppn 10%</span> 
+                        </p>
                         </div>
                         <input type="hidden" value="<?php echo $row['seats'];?>" name="seats[<?php echo $no;?>]">
                         <input type="hidden" value="<?php echo $row['id'];?>" name="id_ticket[<?php echo $no;?>]">
+                        <input type="hidden" value="<?php echo $row['price'];?>" name="price[<?php echo $no;?>]">
                         <button class="btn btn-primary btn-block" type="submit" name="submit" value="<?php echo $no;?>" style="margin: 0 auto;border: none;width: 50%;top: -20px;">Booking</button>
                     </div>
                 </form>

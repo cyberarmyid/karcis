@@ -10,6 +10,16 @@
 
     $id_ticket = @$_POST['id_ticket'][$identity];
     $seats = @$_POST['seats'][$identity];
+    $price = (int)@$_POST['price'][$identity];
+
+    $percent = 10;
+
+    $percentInDecimal = $percent / 100;
+
+    //Get the result.
+    $percent = $percentInDecimal * $price;
+    
+    $total_price = $price + $percent;
 
 
     // jika kursi 0
@@ -20,7 +30,7 @@
     
 
     // insert table booking
-    $sql = "INSERT INTO booking (id_user, id_ticket, status) VALUES ('$id_user', '$id_ticket', 0)";
+    $sql = "INSERT INTO booking (id_user, id_ticket, status, price) VALUES ('$id_user', '$id_ticket', 0,'$total_price')";
 
     if ($conn->query($sql) === TRUE) {
         // update seats in table tickets
