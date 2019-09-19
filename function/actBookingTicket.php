@@ -30,7 +30,7 @@
                 exit;
             } else {
 
-                header('Location: '.$host.'myTickets.php?status=success');
+                header('Location: '.$host.'myBookings.php?status=success');
             }
     } else {
         echo("Error description: " . mysqli_error($conn));

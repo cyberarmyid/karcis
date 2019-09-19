@@ -21,6 +21,7 @@ include "function/getMyTickets.php";
                     <?php
                         if ($result->num_rows > 0) {
                         // output data of each row
+                            var_dump($result->fetch_assoc());
                             while($row = $result->fetch_assoc()) {
                     ?>
                     <div class="u_t">
