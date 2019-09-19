@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 16, 2019 at 10:58 AM
+-- Generation Time: Sep 19, 2019 at 01:20 PM
 -- Server version: 5.7.27
 -- PHP Version: 7.3.9-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -30,17 +30,10 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_ticket` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `price` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`id`, `id_user`, `id_ticket`, `status`, `created_at`) VALUES
-(1, 1, 3, 0, '2019-09-16 00:21:57'),
-(2, 1, 2, 0, '2019-09-16 00:23:22');
 
 -- --------------------------------------------------------
 
@@ -53,7 +46,7 @@ CREATE TABLE `forgot_password` (
   `email` varchar(255) NOT NULL,
   `hash` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
-  `flag` tinyint(4) NOT NULL,
+  `flag` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,9 +70,9 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `from`, `to`, `price`, `seats`, `created_at`) VALUES
-(1, 'Bandung', 'Jakarta', 250000, 5, '2019-09-16 00:20:25'),
-(2, 'Bandung', 'Semarang', 400000, 3, '2019-09-12 15:45:59'),
-(3, 'Bandung', 'Yogyakarta', 650000, 4, '2019-09-16 00:23:22');
+(1, 'Bandung', 'Jakarta', 250000, 2, '2019-09-19 06:15:43'),
+(2, 'Bandung', 'Semarang', 400000, -2, '2019-09-18 07:06:53'),
+(3, 'Bandung', 'Yogyakarta', 650000, 3, '2019-09-19 06:18:01');
 
 -- --------------------------------------------------------
 
@@ -94,13 +87,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `password`, `created_at`) VALUES
-(1, 'rendybustari@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', '2019-09-13 06:18:56');
-
 -- --------------------------------------------------------
 
 --
@@ -114,13 +100,6 @@ CREATE TABLE `user_profile` (
   `identity_card` text,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_profile`
---
-
-INSERT INTO `user_profile` (`id_user`, `fullname`, `phone`, `identity_card`, `created_at`) VALUES
-(1, 'rendy b', '1234', 'code.png', '2019-09-13 06:18:56');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +143,12 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tickets`
 --
@@ -174,7 +158,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
