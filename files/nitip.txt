@@ -3,5 +3,5 @@ root
 inipasswordphpmyadmingue
 
 login admin
-admin
+admin@karcis.id
 admin
