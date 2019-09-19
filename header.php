@@ -55,6 +55,7 @@
                         if($id) {?>
                             <a class="login" href="tickets.php">Tickets</a>
                             <a class="login" href="myBookings.php">My Bookings</a>
+                            <a class="login" href="myRewards.php">My Rewards</a>
                             <a class="login" href="profile.php">Profile</a>
                             <a class="login" href="<?php echo $host;?>function/logout.php">Logout</a>
                             <?php } else { ?>
