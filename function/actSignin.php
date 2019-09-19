@@ -15,6 +15,7 @@
             session_start();
             @$_SESSION["id"] = $row['id'];
             @$_SESSION["fullname"] = $row['fullname'];
+            @$_SESSION['tipe'] = 'users';
 
             header('Location: '.$host.'profile.php');
         }
