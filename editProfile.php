@@ -9,7 +9,6 @@ include "function/getProfile.php";
             <h4>Edit Profile</h4>
             <hr class="profile-line"/>
             <div class="form-row mx-auto pb-4">
-
                 <div class="form-group" style="width: 100%">
                     <label class="font-field-title">Nama Lengkap</label>
                     <input class="form-control font-field" style="width: 100%; height: 50px;" type="text" autocomplete="off" name="fullname" value="<?php echo $user_profile['fullname'];?>">
@@ -26,7 +25,6 @@ include "function/getProfile.php";
                     <label class="font-field-title">Identitas (KTP/SIM/PASSPORT)</label>
                     <input type="file" class="form-control" name="userfile" style="padding: 3px;">
                 </div>
-
             </div>
             <hr class="profile-line"/>
             <div class="row mt-4">
