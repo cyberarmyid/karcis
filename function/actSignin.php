@@ -1,8 +1,8 @@
 <?php
     include "../conn.php";
 
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
+    $email = @$_POST['email'];
+    $password = sha1(@$_POST['password']);
 
 
     $sql = "SELECT * FROM users where email = '$email' and password = '$password'";
@@ -13,8 +13,9 @@
         // output data of each row
         while($row = $result->fetch_assoc()) {
             session_start();
-            $_SESSION["id"] = $row['id'];
-            $_SESSION["fullname"] = $row['fullname'];
+            @$_SESSION["id"] = $row['id'];
+            @$_SESSION["fullname"] = $row['fullname'];
+            @$_SESSION['tipe'] = 'users';
 
             header('Location: '.$host.'profile.php');
         }

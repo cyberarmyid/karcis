@@ -3,62 +3,60 @@ include "../conn.php";
 
 @session_start();
 
-$id = $_SESSION['id'];
+$id = @$_SESSION['id'];
 
 if(!$id){
     header('location:'.$host.'signin.php');
 }
 
-$fullname = $_POST['fullname'];
-$phone = $_POST['phone'];
+$fullname = @$_POST['fullname'];
+$email = @$_POST['email'];
+$phone = @$_POST['phone'];
 
-$extensionList = array("jpeg", "jpg", "gif", "png");
- 
-// identitas
+// mitra
 $fileName = $_FILES['userfile']['name'];
-$pecah = explode(".", $fileName);
-$ekstensi = $pecah[1];
 
  // nama direktori upload
-$namaDir = '../identitas/';
+$namaDir = '../files/';
 
 // membuat path nama direktori + nama file.
-$pathFile = $namaDir . $fileName;
+$pathFile = $namaDir.$fileName;
 
-if ($fileName && in_array($ekstensi, $extensionList)) {
-
+if ($fileName) {
     // memindahkan file ke temporary
     $tmpName  = $_FILES['userfile']['tmp_name'];
 
     // proses upload file dari temporary ke path file
-    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $pathFile)) 
-    {       
-	    	// get data user
-			$user = "UPDATE user_profile SET fullname = '$fullname', phone = '$phone', identity_card = '$fileName' WHERE id_user = $id";
+    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $pathFile)) {
+        // update data
+        $user = "UPDATE users SET email = '$email' WHERE id = $id";
+        $conn->query($user);
 
-            $conn->query($user);
-            if($conn->query($sql_profile) === FALSE){
-                echo("Error description: " . mysqli_error($conn));
-                // exit;
-            }
-        	header('Location: '.$host.'profile.php?status=success');
+        $userProfile = "UPDATE user_profile SET fullname = '$fullname', phone = '$phone', identity_card = '$fileName' WHERE id_user = $id";
+        $conn->query($userProfile);
 
-    } 
-    else
-    {
+        if($conn->query($user) === FALSE && $conn->query($userProfile) === FALSE){
+            echo("Error description: " . mysqli_error($conn));
+        }
+
+        header('Location: '.$host.'profile.php?status=success');
+    } else {
         var_dump($_FILES['userfile']['error']);
-         echo "File gagal diupload.";
+        echo "File gagal diupload.";
     }
+} else {
+    // update data
+    $user = "UPDATE users SET email = '$email' WHERE id = $id";
+    $conn->query($user);
+
+    $userProfile = "UPDATE user_profile SET fullname = '$fullname', phone = '$phone' WHERE id_user = $id";
+    $conn->query($userProfile);
+
+    if($conn->query($user) === FALSE && $conn->query($userProfile) === FALSE){
+        echo("Error description: " . mysqli_error($conn));
+    }
+
+    header('Location: '.$host.'profile.php?status=success');
 }
 
 
-$user = "UPDATE user_profile SET fullname = '$fullname', phone = '$phone' WHERE id_user = $id";
-
-$conn->query($user);
-
-if($conn->query($sql_profile) === FALSE){
-    echo("Error description: " . mysqli_error($conn));
-}
-
-
-header('Location: '.$host.'profile.php?status=success');

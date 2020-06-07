@@ -3,21 +3,34 @@
 
     @session_start();
 
-    $id_user = $_SESSION['id'];
+    $id_user = @$_SESSION['id'];
 
-    $submit = $_POST['submit'];
+    $submit = @$_POST['submit'];
     $identity = (int)$submit[0];
 
-    $id_ticket = $_POST['id_ticket'][$identity];
-    $seats = $_POST['seats'][$identity];
+    $id_ticket = @$_POST['id_ticket'][$identity];
+    $seats = @$_POST['seats'][$identity];
+    $price = (int)@$_POST['price'][$identity];
+
+    $percent = 10;
+
+    $percentInDecimal = $percent / 100;
+
+    //Get the result.
+    $percent = $percentInDecimal * $price;
+    
+    $total_price = $price + $percent;
+
 
     // jika kursi 0
-    if($seats == 0){
+    if($seats < 1){
         header('Location: '.$host.'tickets.php?status=seatsFailed' );
+        exit;
     }
+    
 
     // insert table booking
-    $sql = "INSERT INTO booking (id_user, id_ticket, status) VALUES ('$id_user', '$id_ticket', 0)";
+    $sql = "INSERT INTO booking (id_user, id_ticket, status, price) VALUES ('$id_user', '$id_ticket', 0,'$total_price')";
 
     if ($conn->query($sql) === TRUE) {
         // update seats in table tickets
@@ -27,7 +40,7 @@
                 exit;
             } else {
 
-                header('Location: '.$host.'myTickets.php?status=success');
+                header('Location: '.$host.'myBookings.php?status=success');
             }
     } else {
         echo("Error description: " . mysqli_error($conn));

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 16, 2019 at 10:58 AM
--- Server version: 5.7.27
--- PHP Version: 7.3.9-1+ubuntu18.04.1+deb.sury.org+1
+-- Host: localhost
+-- Generation Time: Sep 20, 2019 at 02:43 AM
+-- Server version: 5.7.25
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,6 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `created_at`) VALUES
+(1, 'admin@karcis.id', 'd033e22ae348aeb5660fc2140aec35850c4da997', '2019-09-19 07:32:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `booking`
 --
 
@@ -30,7 +52,8 @@ CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_ticket` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `price` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -38,9 +61,17 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `id_user`, `id_ticket`, `status`, `created_at`) VALUES
-(1, 1, 3, 0, '2019-09-16 00:21:57'),
-(2, 1, 2, 0, '2019-09-16 00:23:22');
+INSERT INTO `booking` (`id`, `id_user`, `id_ticket`, `status`, `price`, `created_at`) VALUES
+(3, 5, 1, 0, 275000, '2019-09-20 02:34:07'),
+(4, 5, 2, 0, 440000, '2019-09-20 02:34:09'),
+(5, 5, 3, 0, 715000, '2019-09-20 02:34:11'),
+(6, 4, 2, 0, 440000, '2019-09-20 02:34:39'),
+(7, 4, 3, 0, 715000, '2019-09-20 02:34:41'),
+(8, 6, 1, 0, 275000, '2019-09-20 02:36:06'),
+(9, 6, 2, 0, 440000, '2019-09-20 02:36:08'),
+(10, 6, 2, 0, 440000, '2019-09-20 02:36:10'),
+(11, 7, 3, 0, 715000, '2019-09-20 02:37:04'),
+(12, 7, 3, 0, 715000, '2019-09-20 02:37:06');
 
 -- --------------------------------------------------------
 
@@ -53,7 +84,7 @@ CREATE TABLE `forgot_password` (
   `email` varchar(255) NOT NULL,
   `hash` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
-  `flag` tinyint(4) NOT NULL,
+  `flag` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,9 +108,9 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `from`, `to`, `price`, `seats`, `created_at`) VALUES
-(1, 'Bandung', 'Jakarta', 250000, 5, '2019-09-16 00:20:25'),
-(2, 'Bandung', 'Semarang', 400000, 3, '2019-09-12 15:45:59'),
-(3, 'Bandung', 'Yogyakarta', 650000, 4, '2019-09-16 00:23:22');
+(1, 'Bandung', 'Jakarta', 250000, 4, '2019-09-20 02:42:51'),
+(2, 'Bandung', 'Semarang', 400000, 2, '2019-09-20 02:42:54'),
+(3, 'Bandung', 'Yogyakarta', 650000, 1, '2019-09-20 02:42:56');
 
 -- --------------------------------------------------------
 
@@ -99,7 +130,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `created_at`) VALUES
-(1, 'rendybustari@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', '2019-09-13 06:18:56');
+(4, 'torr@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2019-09-20 02:26:03'),
+(5, 'hulek@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2019-09-20 02:33:10'),
+(6, 'baja@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2019-09-20 02:35:22'),
+(7, 'laba-laba@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2019-09-20 02:36:40');
 
 -- --------------------------------------------------------
 
@@ -108,6 +142,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `created_at`) VALUES
 --
 
 CREATE TABLE `user_profile` (
+  `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `phone` varchar(100) DEFAULT NULL,
@@ -119,12 +154,21 @@ CREATE TABLE `user_profile` (
 -- Dumping data for table `user_profile`
 --
 
-INSERT INTO `user_profile` (`id_user`, `fullname`, `phone`, `identity_card`, `created_at`) VALUES
-(1, 'rendy b', '1234', 'code.png', '2019-09-13 06:18:56');
+INSERT INTO `user_profile` (`id`, `id_user`, `fullname`, `phone`, `identity_card`, `created_at`) VALUES
+(2, 4, 'Torr Ganteng', '90897889878', 'ktp-thor.png', '2019-09-20 02:26:03'),
+(3, 5, 'Hulek Kasep', '12346756', 'ktp-hulk.png', '2019-09-20 02:33:10'),
+(4, 6, 'Manusia Baja', '8849485932', 'ktp-iron-man.png', '2019-09-20 02:35:22'),
+(5, 7, 'The Laba-laba', '0989783748', 'ktp-maman.png', '2019-09-20 02:36:40');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `booking`
@@ -154,6 +198,7 @@ ALTER TABLE `users`
 -- Indexes for table `user_profile`
 --
 ALTER TABLE `user_profile`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -161,20 +206,41 @@ ALTER TABLE `user_profile`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `user_profile`
+--
+ALTER TABLE `user_profile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- Constraints for dumped tables
 --
@@ -184,6 +250,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_profile`
   ADD CONSTRAINT `user_profile_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

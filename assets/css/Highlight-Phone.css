@@ -1,7 +1,7 @@
 
 .highlight-karcis {
   color: #313437;
-  background-color: rgb(244,71,107);
+  background-color: rgb(175, 61, 86);
   padding: 50px 0 55px;
   overflow: hidden;
 }
@@ -100,7 +100,7 @@
   border: 1px solid #444;
   background-color: #aaa;
   overflow: hidden;
-  background: url(../../assets/img/screen-content-iphone-6.jpg);
+  background: url(../../assets/img/ticket.png);
   background-size: cover;
   background-position: center;
 }
@@ -122,7 +122,7 @@
 }
 
 .navigation-clean-button .actions .login {
-  color: rgb(244,71,107);
+  color: rgb(175, 61, 86);
 }
 
 .btn.btn-primary {
@@ -131,7 +131,7 @@
 }
 
 .btn.btn-primary {
-  background-color: rgb(244,71,107);
+  background-color: rgb(175, 61, 86);
 }
 
 .btn-grey{
